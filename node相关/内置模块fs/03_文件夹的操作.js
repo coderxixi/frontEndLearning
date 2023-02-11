@@ -19,3 +19,21 @@ fs.readdir('./why',(err,data)=>{
 fs.readdir('./why',{withFileTypes:true},(err,data)=>{
   console.log('data',data)
 })
+
+
+//递归的读取文件夹中的所有文件
+
+ function readirectory(path){
+   fs.readdir(path,{withFileTypes:true},(err,flies)=>{
+        flies.forEach(item=>{
+          if(item.isDirectory()){
+             readirectory(`${path}/${item.name}`)
+          }else{
+              console.log('获取到文件',item.name);
+          }
+        })
+   })
+ }
+
+ readirectory('./why')
+
