@@ -15,3 +15,7 @@ fs.readFile('./abc.txt',{encoding:'utf-8'},(err,data)=>{
 
 
 // 异步读取：Promise
+
+fs.promises.readFile('./abc.txt',{encoding:'utf-8'}).then(res=>{
+  console.log('resss',res);
+})
