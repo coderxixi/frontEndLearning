@@ -18,4 +18,7 @@ fs.readFile('./abc.txt',{encoding:'utf-8'},(err,data)=>{
 
 fs.promises.readFile('./abc.txt',{encoding:'utf-8'}).then(res=>{
   console.log('resss',res);
+}).catch(error=>{
+  console.log('error',error
+  );
 })
