@@ -4,7 +4,7 @@ class eventemitter {
   }
   //实现订阅
   on(type, callBack) {
-    if (!this.events[types]) {
+    if (!this.events[type]) {
       this.events[type] = [callBack]
     } else {
       this.events[type].push(callBack)
