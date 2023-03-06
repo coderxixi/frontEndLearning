@@ -3,8 +3,8 @@ const ctx = cvs.getContext('2d');
 
 //初始化
 function init() {
-  cvs.width = window.innerWidth;
-  cvs.height = window.innerHeight
+  cvs.width = window.innerWidth * devicePixelRatio;
+  cvs.height = window.innerHeight *devicePixelRatio
 }
 
 
@@ -44,7 +44,7 @@ function getRandom(min, max) {
 
 class Point {
   constructor() {
-    this.r = 6
+    this.r = 6 *devicePixelRatio
     this.x = getRandom(0, cvs.width - this.r / 2);
     this.y = getRandom(0, cvs.height - this.r / 2);
   }
