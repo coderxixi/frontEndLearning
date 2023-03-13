@@ -7,4 +7,5 @@ enum Direction {
   RIGHT
 }
 
+
 const d1: Direction = Direction.UP
