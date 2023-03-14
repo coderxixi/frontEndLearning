@@ -9,6 +9,9 @@ type NewPerson<T> = {
   +readonly [K in keyof T] +?:T[K] 
 }
 
+
+
+
 type IKun = NewPerson<Iperson>
 
 export {
