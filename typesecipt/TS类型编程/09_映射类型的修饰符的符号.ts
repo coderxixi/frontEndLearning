@@ -5,6 +5,9 @@ interface Iperson {
   address:string
 }
 
+
+
+
 type NewPerson<T> = {
   +readonly [K in keyof T] +?:T[K] 
 }
