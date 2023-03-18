@@ -1,7 +1,7 @@
 interface Iperson {
   readonly name:string,
   age?:number,
- readonly height ?:number,
+  readonly height ?:number,
   address:string
 }
 
