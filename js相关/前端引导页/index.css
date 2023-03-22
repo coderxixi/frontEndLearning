@@ -1,0 +1,54 @@
+*{
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.box .item{
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 14px;
+  border: 1px solid skyblue;
+  position: absolute;
+  text-align: center;
+  cursor: pointer;
+}
+.box .a{
+    left: 100px;
+    top: 60px;
+}
+.box .b{
+    right: 200px;
+    top: 90px;
+}
+.box .c{
+    right: 500px;
+    top: 300px;
+}
+.box .d{
+    right: 240px;
+    top: 200px;
+}
+
+.guide-modal {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.guide-box {
+  width: 150px;
+  min-height: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  position: absolute;
+  transition: 0.5s;
+  padding: 10px;
+  text-align: center;
+}
+.btn {
+  margin: 20px 5px 5px 5px;
+}
