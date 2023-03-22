@@ -46,10 +46,10 @@ function genGuide(hasChange = true){
   // 克隆节点
   cloneNode = hasChange ? currNode.cloneNode(true) : cloneNode;
   cloneNode.id = currNode.id + "_clone";
-  // cloneNode.style = `
-  // margin-left: ${x}px;
-  // margin-top: ${y}px;
-  // `;
+  cloneNode.style = `
+  margin-left: ${x}px;
+  margin-top: ${y}px;
+  `;
   console.log('guideBoxRef', guideBoxRef.clientHeight, cloneNode);
   // 指引相关
   if (guideBoxRef) {
