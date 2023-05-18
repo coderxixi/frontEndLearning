@@ -76,7 +76,9 @@
       },
       methods: {
         onScroll(){
-          const scrollCount= Math.round(this.$refs.viewport.scrollTop / this.rowHeight) 
+       
+          const scrollCount= Math.round(this.$refs.viewport.scrollTop / this.rowHeight) ;
+             console.log('this.$refs.viewport.scrollTop ', this.$refs.viewport.scrollTop, scrollCount);
            //清除原本的滚动 平移回来；
            this.$refs.list.style.transform=`translateY(${this.$refs.viewport.scrollTop}px)`;
           //改变star和end,
