@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="file"/>
+  <script>
+    const inp=document.querySelector('input');
+    inp.onchange=(e)=>{
+      const file=inp.files[0];
+      if(!file) return
+    //  const piece= file.slice(0,100);//0-99个字节
+
+     const list= creatChunks(file,1*1024*1024);
+
+     console.log('list',list);
+
+    }
+    function creatChunks(file,chunKSize){
+      const result=[];
+      for(let i=0;i<file.size;i+=chunKSize){
+         result.push(file.slice(i,i+chunKSize));
+      }
+        return result;
+    }
+  </script>
+</body>
+</html>
