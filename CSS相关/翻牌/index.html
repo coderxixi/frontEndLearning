@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 300px;
+      position: absolute;
+      animation: move 5s infinite ease-in-out;
+    }
+   .a {
+      background: purple;
+    }
+    .b{
+      background: aqua;
+      animation-delay: 2.5s;
+    }
+    @keyframes move {
+      0% {
+        z-index: 1;
+      }
+
+      12.5% {
+        transform: translate(250px);
+      }
+
+      25% {
+        z-index: -1;
+        transform: translate(0px);
+      }
+
+      100% {
+        z-index: 0;
+        transform: translate(0px);
+      }
+    }
+  </style>
+</head>
+<body>
+  
+    <div class="a"></div>
+  <div class="b"></div>
+
+
+
+</body>
+</html>
