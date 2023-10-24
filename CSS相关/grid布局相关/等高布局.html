@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+ <style>
+  html,
+body {
+    height: 100vh;
+    overflow-y: hidden; /* 这个很重要 */
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-areas: 
+        "header"
+        "main"
+        "footer";
+    row-gap: 10px;
+}
+
+header {
+    grid-area: header;
+}
+
+main {
+    grid-area: main;
+    overflow-y: auto; /* 这个很重要 */
+}
+
+footer {
+    grid-area: footer;
+}
+
+ </style>
+</head>
+<body>
+  <header>固定在页面顶部</header>
+  <main>主内容区域，内多过多时出现垂直滚动条</main>
+  <footer>固定在页面底部</footer>
+</body>
+</html>

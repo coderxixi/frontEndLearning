@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .top{
+      height: 300vh;
+    }
+ @keyframes revealScroller {
+    0%,
+    10% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    18%,
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+​
+.scroll-to-top {
+    animation: revealScroller 0.2s ease-out;
+    animation-timeline: scroll(root);
+}
+  </style>
+</head>
+<body>
+  <main class="top">
+    <!-- 页面其他内容 -->
+    <a href="#top" class="scroll-to-top">
+      <svg></svg>
+      <span class="visually-hidden">Scroll to top</span>
+    </a>
+  </main>
+</body>
+</html>

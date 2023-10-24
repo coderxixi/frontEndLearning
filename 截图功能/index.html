@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    .canvas_container {
+      display: none;
+      border: 1px solid red;
+    }
+     .canvas2_container {
+      display: none;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    0 . input file 读取图片
+    1.canva画布 自适应 图片的大小就是画布的大小
+    2.绘制图片 drawImage
+    3.蒙层  黑色半透明的层
+    4.截图的巨型 在蒙层上方鼠标的范围内进行图片再绘制
+    5.获取当前图片的截图后的数据
+    6.放入另外一个canvas
+   -->
+  <div>
+    <input type="file" id="imageFile" accept="image/*" />
+  </div>
+
+  <div class="canvas_container">
+    <canvas id="can"></canvas>
+  </div>
+
+  <div class="canvas2-container">
+    <canvas id="can2"></canvas>
+  </div>
+  <script>
+    const oContainer = document.querySelector('.canvas_container');
+    const oContainer2 = document.querySelector('.canvas2-container');
+    const oCan = document.getElementById('can');
+    const oCan2 = document.getElementById('can2');
+    const oImageFile = document.querySelector('#imageFile');
+    const ctx = oCan.getContext('2d');
+    const ctx2 = oCan2.getContext('2d');
+    const onImage = new Image();
+    let initPos = [];
+    //截图后的信息
+    let screenShotData = [];
+    const init = () => {
+      bindEvent();
+    }
+    function bindEvent() {
+      oImageFile.addEventListener('change', handleFileChange, false);
+      oCan.addEventListener('mousedown', handleCanvasMouseDown, false)
+    }
+    function handleCanvasMouseDown(e) {
+      initPos = [e.offsetX, e.offsetY];
+      oCan.addEventListener('mousemove', handleCanvasMouseMove, false);
+      oCan.addEventListener('mouseup', handleCanvasMouseUp, false)
+    }
+    function handleCanvasMouseUp(e) {
+      oCan.removeEventListener('mousemove', handleCanvasMouseMove, false);
+      oCan.removeEventListener('mouseup', handleCanvasMouseUp, false);
+      drawScreenShotImage(screenShotData)
+    }
+    function handleCanvasMouseMove(e) {
+      console.log('e', e);
+      const endX = e.offsetX;
+      const endY = e.offsetY;
+      const [startX, startY] = initPos;
+      const rectWidth = endX - startX;
+      const rectHeight = endY - startY;
+      const { width, height } = oCan
+      screenShotData = [startX, startY, rectWidth, rectHeight]
+      ctx.clearRect(0, 0, width, height);
+      drawImageMask(0, 0, width, height, .5);
+      //画截图
+      drawScreenShot(width, height, rectWidth, rectHeight);
+    }
+    function handleFileChange(e) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file)
+      reader.onload = function (e) {
+        const data = e.target.result;
+        onImage.src = data;
+        onImage.onload = function () {
+          const { width, height } = this
+          generateCanvas(oContainer, oCan, width, height);
+          ctx.drawImage(onImage, 0, 0, width, height);
+          drawImageMask(0, 0, width, height, .5)
+        }
+      }
+    }
+    function generateCanvas(container, canvas, width, height) {
+      container.style.width = width + 'px';
+      container.style.height = height + 'px';
+      canvas.width = width;
+      canvas.height = height;
+      container.style.display = 'block'
+    }
+
+    function drawImageMask(x, y, width, height, opacity) {
+      ctx.fillStyle = `rgba(0,0,0,${opacity})`
+      ctx.fillRect(0, 0, width, height)
+
+    }
+
+    function drawScreenShot(width, height, rectWidth, rectHeight) {
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = '#000';
+      ctx.fillRect(...initPos, rectWidth, rectHeight);
+      ctx.globalCompositeOperation = 'destination-over';
+      ctx.drawImage(onImage, 0, 0, width, height, 0, 0, width, height);
+    }
+    function drawScreenShotImage(screenShotData){
+      const data=ctx.getImageData(...screenShotData);
+      generateCanvas(oContainer2,oCan2,screenShotData[2],screenShotData[3]);
+      ctx2.clearRect(...screenShotData);
+      ctx.putImageData(data,0,0);
+      
+    }
+    init()
+  </script>
+</body>
+</html>
