@@ -4,41 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
- <style>
-  html,
-body {
-    height: 100vh;
-    overflow-y: hidden; /* 这个很重要 */
+  <style>
+figure:has(figcaption) img {
+    border-radius: 1rem 1rem 0 0;
 }
-
-body {
-    display: grid;
-    grid-template-rows: auto minmax(0, 1fr) auto;
-    grid-template-areas: 
-        "header"
-        "main"
-        "footer";
-    row-gap: 10px;
-}
-
-header {
-    grid-area: header;
-}
-
-main {
-    grid-area: main;
-    overflow-y: auto; /* 这个很重要 */
-}
-
-footer {
-    grid-area: footer;
-}
-
- </style>
+  </style>
 </head>
 <body>
-  <header>固定在页面顶部</header>
-  <main>主内容区域，内多过多时出现垂直滚动条</main>
-  <footer>固定在页面底部</footer>
+  <!-- Case ① -->
+  <figure>
+    <figcaption>CSS Pseudo-Class Specification</figcaption>
+    <img src="https://picsum.photos/1240/?random=11" alt="">
+  </figure>
+
+  <!-- Case ② -->
+  <figure>
+    <div class="media">
+      <img src="https://picsum.photos/1240/?random=12" alt="">
+    </div>
+    <figcaption>CSS Pseudo-Class Specification</figcaption>
+  </figure>
+
+  <!-- Case ③ -->
+  <figure>
+    <img src="https://picsum.photos/1240/?random=13" alt="">
+    <figcaption>CSS Pseudo-Class Specification</figcaption>
+  </figure>
 </body>
 </html>
